@@ -7,6 +7,7 @@ import Description from "~/components/hero/description";
 export default component$(() => {
   const mobile = useSignal(false);
 
+  // Getting window's width
   useVisibleTask$(({ cleanup }) => {
     const width = window.innerWidth;
     mobile.value = width < 450;
@@ -18,11 +19,9 @@ export default component$(() => {
   });
 
   return (
-    <header class="container flex flex-wrap justify-between md:flex-row">
-      <div class="md:w-2/5">
-        <h1 class="text-3xl font-bold text-violet-800">
-          Interaction Design Apprenticeship
-        </h1>
+    <header class={styles.container}>
+      <div class={styles.box.left}>
+        <h1 class={styles.title}>Interaction Design Apprenticeship</h1>
         {!mobile.value && (
           <>
             <Description />
@@ -30,12 +29,16 @@ export default component$(() => {
           </>
         )}
       </div>
-      <div class="flex flex-col gap-4 md:w-2/5 md:gap-6">
-        <p class="text-slate-500">
-          Powered by: <span class="font-bold">Zeptolab</span>
-        </p>
-        {/* icon */}
-        <img class="h-16 w-16" />
+      <div class={styles.box.right}>
+        <div class={styles.box.partner}>
+          <img class={styles.icon} />
+
+          <p class="text-slate-500 md:mt-4">
+            Powered by: <span class="font-bold">Zeptolab</span>
+          </p>
+          {/* icon */}
+        </div>
+
         <DeadlineCard />
         <InfoCard />
       </div>
@@ -48,3 +51,14 @@ export default component$(() => {
     </header>
   );
 });
+
+const styles = {
+  container: "container flex flex-wrap justify-between md:flex-row",
+  box: {
+    left: "md:w-2/5",
+    right: "flex flex-col gap-4 md:w-2/5 md:gap-6",
+    partner: "flex w-full flex-col-reverse gap-6  md:flex md:flex-row md:items-center",
+  },
+  title: "text-3xl font-bold text-violet-800",
+  icon: "h-16 w-16",
+};
