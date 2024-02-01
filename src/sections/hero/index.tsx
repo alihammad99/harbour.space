@@ -1,4 +1,5 @@
 import { component$ } from "@builder.io/qwik";
+import Button from "~/components/button/primary";
 import DeadlineCard from "~/components/cards/hero-deadline";
 import InfoCard from "~/components/cards/hero-info";
 import Description from "~/components/hero/description";
@@ -21,6 +22,7 @@ export default component$(() => {
         <InfoCard />
       </div>
       <Description />
+      <Button />
     </header>
   );
 });
