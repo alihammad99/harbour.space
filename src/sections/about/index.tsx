@@ -1,8 +1,22 @@
-import { component$, $, useOnWindow, useSignal } from "@builder.io/qwik";
+import {
+  component$,
+  $,
+  useOnWindow,
+  useSignal,
+  useVisibleTask$,
+} from "@builder.io/qwik";
 import { Image } from "@unpic/qwik";
 
 export default component$(() => {
   const mobile = useSignal(false);
+
+  useVisibleTask$(
+    () => {
+      const width = window.innerWidth;
+      mobile.value = width < 450;
+    },
+    { strategy: "document-ready" },
+  );
 
   // Getting window's width
   useOnWindow(
@@ -15,8 +29,10 @@ export default component$(() => {
 
   return (
     <section class={styles.container}>
-      <div class="relative z-30 m-auto h-80 w-full translate-y-4 bg-white   sm:translate-y-0">
-        <div class={`${styles.absolute} z-50 w-4/5 p-2`}>
+      <div class="relative z-30 h-80 w-full translate-y-4 bg-white sm:translate-y-0 md:w-auto">
+        <div
+          class={`${styles.absolute} z-50 w-4/5 p-2 md:left-0 md:w-64 md:translate-x-0`}
+        >
           <Image
             alt="About section photo"
             src="/about.png"
@@ -26,8 +42,10 @@ export default component$(() => {
           />
         </div>
 
-        <div class="absolute bottom-0 z-10 h-2/4 w-full border border-b-0 border-slate-200 bg-white"></div>
-        <div class={`${styles.absolute} w-full`}>
+        <div class="absolute bottom-0 z-10 h-2/4 w-full border border-b-0 border-slate-200 bg-white md:invisible"></div>
+        <div
+          class={`${styles.absolute} w-full md:left-0 md:w-72 md:translate-x-0`}
+        >
           <Image
             alt="pattern"
             src="/pattern.svg"
@@ -37,7 +55,7 @@ export default component$(() => {
           />
         </div>
       </div>
-      <div class="z-30 rounded-md border border-t-0 border-slate-200 bg-white p-8">
+      <div class="z-30 rounded-md border border-t-0 border-slate-200 bg-white p-8 md:w-2/4 md:border-0">
         <h3 class="mb-8 max-w-[90%] overflow-clip text-3xl font-semibold text-violet-700">
           About the
           <br /> apprenticeship
@@ -51,7 +69,7 @@ export default component$(() => {
       </div>
 
       <div
-        class={`${styles.absolute} z-[-10] mt-8 h-2/4 w-screen bg-violet-600`}
+        class={`${styles.absolute} z-[-10] mt-8 h-2/4 w-screen bg-violet-600 md:invisible`}
       ></div>
     </section>
   );
