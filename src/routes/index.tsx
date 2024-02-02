@@ -6,7 +6,7 @@ import About from "~/sections/about";
 export default component$(() => {
   return (
     <>
-      {/* <Hero /> */}
+      <Hero />
       <About />
     </>
   );
