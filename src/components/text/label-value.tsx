@@ -12,6 +12,6 @@ export default component$(
 );
 
 const styles = {
-  label: "m-0 text-violet-800 text-md font-medium",
+  label: "m-0 text-violet-700 text-md font-medium",
   value: "overflow-clip text-md text-clip text-slate-900",
 };
