@@ -41,4 +41,5 @@ pnpm-lock.yaml
 .yarn/*
 !.yarn/releases
 
- 
+# Local Netlify folder
+.netlify
