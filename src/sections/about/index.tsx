@@ -6,7 +6,7 @@ import {
   useVisibleTask$,
 } from "@builder.io/qwik";
 import { Image } from "@unpic/qwik";
-import LabelValue from "~/components/text/label-value";
+import AboutCards from "~/components/cards/about";
 
 export default component$(() => {
   const mobile = useSignal(false);
@@ -33,7 +33,7 @@ export default component$(() => {
       <div class={styles.container}>
         <div class="relative z-30 h-80 w-full translate-y-4 bg-white sm:translate-y-0 md:w-auto">
           <div
-            class={`${styles.absolute} z-50 w-4/5 p-2 md:left-0 md:w-64 md:translate-x-0`}
+            class={`${styles.absolute} z-50 w-4/5 p-2 md:left-0 md:w-72 md:translate-x-0 md:p-4`}
           >
             <Image
               alt="About section photo"
@@ -57,8 +57,8 @@ export default component$(() => {
             />
           </div>
         </div>
-        <div class="z-30 rounded-md border border-t-0 border-slate-200 bg-white p-8 md:w-2/4 md:border-0">
-          <h3 class="mb-8 max-w-[90%] overflow-clip text-3xl font-semibold text-violet-700">
+        <div class="z-30 w-full rounded-md border border-t-0 border-slate-200 bg-white p-8 md:w-2/4 md:border-0">
+          <h3 class="mb-8 max-w-[90%] overflow-clip text-2xl font-semibold text-violet-700 md:text-3xl">
             About the
             <br /> apprenticeship
           </h3>
@@ -74,74 +74,13 @@ export default component$(() => {
           class={`${styles.absolute} z-[-10] mt-8 h-2/4 w-screen bg-violet-600 md:invisible`}
         ></div>
       </div>
-      <div class="flex flex-row gap-7 md:h-[90vh]">
-        <div class="h-full w-1/3 gap-8 rounded-md border border-slate-300 p-8">
-          <div class="mb-4 h-2/4 w-full">
-            <LabelValue
-              textStyle="text-5xl mt-4"
-              label="Scholarship value"
-              value="€31,300"
-            />
-          </div>
-          <div class="border-t-1 flex flex-wrap justify-between gap-6 border border-t-slate-300 p-4">
-            <LabelValue label="Tuition covered" value="€31,300" />
-            <LabelValue label="Remaining" value="€31,300" />
-            <LabelValue label="Living stipend" value="€31,300" />
-          </div>
-        </div>
-        <div class="flex h-full w-2/3 flex-col justify-between">
-          <div class="flex h-2/3 flex-col justify-between gap-8 md:flex-row">
-            <div class="h-full w-2/4 rounded-md border border-slate-300 p-8">
-              <LabelValue
-                textStyle="text-2xl mt-4 text-slate-600"
-                label="Scholarship value"
-                value="€31,300"
-              />
-              <div class="mb-3 mt-4 h-[1px] w-8 bg-slate-300"></div>
-              <p class=" text-xs font-light leading-5 text-slate-500">
-                You will complete 15 modules to graduate. Daily classes are 3
-                hours, plus coursework to complete in your own time.
-              </p>
-            </div>
-            <div class="h-full w-2/4  rounded-md border border-slate-300 p-8">
-              <LabelValue
-                textStyle="text-2xl mt-4 text-slate-600"
-                label="Scholarship value"
-                value="€31,300"
-              />
-              <div class="mb-3 mt-4 h-[1px] w-8 bg-slate-300"></div>
-              <p class=" text-xs font-light leading-5 text-slate-500">
-                You will complete 15 modules to graduate. Daily classes are 3
-                hours, plus coursework to complete in your own time.
-              </p>
-            </div>
-          </div>
-          <div class="flex w-full flex-row items-center justify-center py-2 text-center">
-            <span class="h-[0.7px] w-full bg-slate-300"></span>
-            <p class="m-2 text-center text-xs">GRADUATION</p>
-            <span class="h-[0.7px] w-full bg-slate-300"></span>
-          </div>
-          <div class="h-2/4 w-full  rounded-md border border-slate-300 p-8">
-            <LabelValue
-              textStyle="text-2xl mt-4 text-slate-600"
-              label="Scholarship value"
-              value="€31,300"
-            />
-            <div class="mb-3 mt-4 h-[1px] w-8 bg-slate-300"></div>
-            <p class=" text-xs font-light leading-5 text-slate-500">
-              You’ll be guaranteed a 1 year contract with SCG upon graduation.
-            </p>
-          </div>
-        </div>
-        <div></div>
-      </div>
+      <AboutCards />
     </section>
   );
 });
 
 const styles = {
-  container:
-    "pt-16 px-4 relative mx-4 flex flex-wrap justify-between md:flex-row",
+  container: "pt-16 relative mx-4 flex flex-wrap justify-between md:flex-row",
 
   absolute:
     "absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]",

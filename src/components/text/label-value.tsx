@@ -8,7 +8,7 @@ export default component$(
   }: {
     label: string;
     value: string;
-    textStyle: string | undefined;
+    textStyle?: string;
   }) => {
     return (
       <div>
