@@ -1,4 +1,10 @@
-import { $, component$, useOnWindow, useSignal } from "@builder.io/qwik";
+import {
+  $,
+  component$,
+  useOnWindow,
+  useSignal,
+  useVisibleTask$,
+} from "@builder.io/qwik";
 import Button from "~/components/button/primary";
 import DeadlineCard from "~/components/cards/hero-deadline";
 import InfoCard from "~/components/cards/hero-info";
@@ -7,7 +13,13 @@ import Description from "~/components/hero/description";
 export default component$(() => {
   const mobile = useSignal(false);
 
-  // Getting window's width
+  useVisibleTask$(
+    () => {
+      const width = window.innerWidth;
+      mobile.value = width < 450;
+    },
+    { strategy: "document-ready" },
+  );
 
   useOnWindow(
     "resize",
