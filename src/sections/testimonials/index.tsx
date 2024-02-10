@@ -1,128 +1,136 @@
-import { component$, useSignal, $, useOnWindow } from "@builder.io/qwik";
-
-const modifyItems = (arr: any[], show: number = 1): any[][] => {
-  const result = [];
-  for (let i = 0; i < arr.length; i += Math.ceil(show)) {
-    result.push(arr.slice(i, i + Math.ceil(show)));
-  }
-
-  return result;
-};
+import { component$, useSignal, $, Slot, useStore } from "@builder.io/qwik";
+import { GoChevronLeft24, GoChevronRight24 } from "@qwikest/icons/octicons";
+import Testimonials from "~/components/cards/testimonials";
 
 const styles = {
   container:
-    "container overflow-hidden w-full z-50 py-24 relative  h-screen bg-blue-100",
-  card: "w-[400px] h-64 hover:bg-pink-400 bg-pink-300 rounded-lg flex items-center justify-center",
+    "w-full flex flex-col cursor-none overflow-x-hidden z-50 mt-10 relative",
+  arrow: "rounded-full border border-slate-200 px-6 py-6",
 };
 
-const cards = [
-  <div class={styles.card}>1</div>,
-  <div class={styles.card}>2</div>,
-  <div class={styles.card}>3</div>,
-  <div class={styles.card}>4</div>,
-  <div class={styles.card}>5</div>,
-  <div class={styles.card}>6</div>,
-];
-export default () => {
-  return (
-    <div class={styles.container}>
-      <Slider render={cards} />
-    </div>
-  );
-};
+export default component$(() => {
+  const hover = useSignal(false);
+  const mouse = useStore({ x: 0, y: 0 });
 
-const Wrapper = component$(({ cards, key }: { cards: any[]; key: number }) => {
   return (
     <div
-      key={key}
-      class="flex h-full min-w-full flex-grow items-center justify-center gap-3 bg-yellow-200"
+      onMouseOver$={() => (hover.value = true)}
+      onMouseLeave$={() => (hover.value = false)}
+      onMouseMove$={(e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      }}
+      class={styles.container}
     >
-      {cards}
+      <div
+        style={{ top: mouse.y, left: mouse.x }}
+        class={[
+          "pointer-events-none z-[100] hidden translate-x-[-50%] translate-y-[-50%] rounded-full bg-violet-600 px-8 py-4 font-semibold text-white transition-all duration-75 ease-linear lg:visible lg:visible lg:fixed lg:flex ",
+          hover.value ? "opacity-100" : "scale-75 opacity-0",
+        ]}
+      >
+        Drag
+      </div>
+      <Slider>
+        <Testimonials />
+        <Testimonials />
+        <Testimonials />
+      </Slider>
     </div>
   );
 });
 
-const Slider = component$(
-  ({
-    render,
-    show = { sm: 1, md: 2, lg: 3 },
-  }: {
-    render: any[];
-    show?: { sm: number; md: number; lg: number } | undefined;
-  }) => {
-    const steps = useSignal(100);
-    const position = useSignal(0);
+const Slider = component$(({ gap = 16 }: { gap: number }) => {
+  const position = useSignal(0);
+  const startDrag = useSignal(0);
+  const offsetX = useSignal(0);
+  const direction = useSignal("");
 
-    const mobileList = modifyItems(render, show.sm || 1).map((cards, i) => (
-      <Wrapper cards={cards} key={i} />
-    ));
-    const tabletList = modifyItems(render, show.md || 2).map((cards, i) => (
-      <Wrapper cards={cards} key={i} />
-    ));
-    const desktopList = modifyItems(render, show.lg || 3).map((cards, i) => (
-      <Wrapper cards={cards} key={i} />
-    ));
+  const slideRight = $(() => {
+    const { box, childrenCount, cardWidth } = getElements();
+    const totalSlide = (cardWidth + gap) * childrenCount;
+    if (position.value < totalSlide - cardWidth * 2) {
+      cardWidth > 500
+        ? (position.value += gap + cardWidth / 2)
+        : (position.value += gap + cardWidth);
+    }
+    box.style.transform = `translateX(-${position.value}px)`;
+  });
+  const slideLeft = $(() => {
+    const { box, cardWidth } = getElements();
+    if (position.value > 0) {
+      console.log(cardWidth);
+      cardWidth > 500
+        ? (position.value -= gap + cardWidth / 2)
+        : (position.value -= gap + cardWidth);
+    }
+    box.style.transform = `translateX(-${position.value}px)`;
+  });
 
-    useOnWindow(
-      ["load", "resize"],
-      $(() => {
-        const width = window.innerWidth;
-        if (width < 640) {
-          steps.value = 100 * Math.ceil(render.length / show.sm || 1);
-        } else if (width < 1024 && width >= 640) {
-          steps.value = 100 * Math.ceil(render.length / show.md || 2);
-        } else {
-          steps.value = 100 * Math.ceil(render.length / show.lg || 3);
-        }
-      }),
-    );
+  const onMouseMove = $((e: any) => {
+    if (startDrag.value !== 0) {
+      const newX = e.clientX + offsetX.value;
+      direction.value = newX - startDrag.value < 0 ? "left" : "right";
+      if (newX - startDrag.value / 2 < 0) {
+        direction.value = "right";
+        console.log(startDrag.value);
+        console.log(newX);
+      } else {
+        direction.value = "left";
+      }
+    }
+  });
+  const onMouseUp = $(() => {
+    startDrag.value = 0;
+    if (direction.value === "right") {
+      slideRight();
+    } else {
+      slideLeft();
+    }
+    console.log(direction.value);
+    document.removeEventListener("mousemove", onMouseMove);
+    // document.removeEventListener("mouseup", onMouseUp);
+  });
+  const onMouseDown = $((e: any) => {
+    startDrag.value = e.clientX;
+    offsetX.value = e.target.getBoundingClientRect().left - e.clientX;
+    document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("mouseup", onMouseUp);
+  });
 
-    const slideRight = $(() => {
-      const boxes = document.querySelectorAll(".slider-inner-box");
-      position.value += 100;
-      Array.prototype.map.call(
-        boxes,
-        (box) => (box.style.transform = `translateX(-${position.value}%)`),
-      );
-    });
-    const slideLeft = $(() => {
-      const boxes = document.querySelectorAll(".slider-inner-box");
-      position.value -= 100;
-      Array.prototype.map.call(
-        boxes,
-        (box) => (box.style.transform = `translateX(-${position.value}%)`),
-      );
-    });
-
-    return (
-      <div class={styles.container}>
-        <div class="flex w-full gap-4">
-          <button
-            class="rounded border border-blue-500 px-8 py-4"
-            disabled={position.value === 0}
-            onClick$={slideLeft}
-          >
-            Left
-          </button>
-          <button
-            class="rounded border border-pink-500 px-8 py-4"
-            disabled={position.value === steps.value - 100}
-            onClick$={slideRight}
-          >
-            Right
-          </button>
-        </div>
-
-        <div class="slider-inner-box z-20 flex h-full w-full bg-yellow-300 transition-all sm:hidden">
-          {mobileList}
-        </div>
-        <div class="slider-inner-box z-20 hidden h-full w-full bg-green-300 transition-all sm:flex lg:hidden">
-          {tabletList}
-        </div>
-        <div class="slider-inner-box z-20 hidden h-full w-full bg-red-300 transition-all lg:flex">
-          {desktopList}
-        </div>
+  return (
+    <div onMouseDown$={onMouseDown} class={styles.container}>
+      <div
+        id="slider-container"
+        class="slider-inner-box z-20 flex h-full gap-4 overflow-x-visible transition-all duration-500 lg:flex lg:translate-x-[-25%]"
+      >
+        <Slot />
       </div>
-    );
-  },
-);
+      <div class="mt-8 flex w-full place-content-end gap-4">
+        <button
+          class={styles.arrow}
+          // disabled={position.value === 0}
+          onClick$={slideLeft}
+        >
+          <GoChevronLeft24 />
+        </button>
+        <button
+          class={styles.arrow}
+          // disabled={position.value === steps.value - 100}
+          onClick$={slideRight}
+        >
+          <GoChevronRight24 />
+        </button>
+      </div>
+    </div>
+  );
+});
+
+const getElements = () => {
+  const box = document.querySelector(".slider-inner-box");
+  const container = document.getElementById("slider-container");
+  const cardWidth = container?.firstElementChild.offsetWidth;
+  const childrenCount = container?.childElementCount;
+
+  return { box, childrenCount, container, cardWidth };
+};
