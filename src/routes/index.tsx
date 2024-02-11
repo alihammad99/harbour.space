@@ -13,7 +13,7 @@ export default component$(() => {
       <About />
       <Testimonials />
       <FAQ />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 });
