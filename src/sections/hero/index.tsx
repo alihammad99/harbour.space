@@ -69,7 +69,7 @@ export default component$(() => {
 });
 
 const styles = {
-  container: "container flex flex-wrap justify-between md:flex-row",
+  container: "container pt-32 flex flex-wrap justify-between md:flex-row",
   box: {
     left: "md:w-2/5",
     right: "flex flex-col gap-4 md:w-2/5 md:gap-6",
