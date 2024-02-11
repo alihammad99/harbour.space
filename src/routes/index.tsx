@@ -9,20 +9,16 @@ import { getData } from "~/api/get-data";
 export default server$(async () => {
   const data = await getData()
     .then((data) => {
-      if (data) {
-        return data;
-      } else {
-        console.log("Failed to fetch data");
-      }
+      return data;
     })
     .catch((error) => {
       console.error("Error during fetch:", error);
     });
-  console.log(data.scholarship);
+
   return (
     <>
       <Hero data={data.scholarship} />
-      <About />
+      <About data={data.scholarship} />
       <Testimonials />
       <FAQ />
     </>
