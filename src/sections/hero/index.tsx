@@ -1,28 +1,14 @@
-import {
-  $,
-  component$,
-  useOnWindow,
-  useSignal,
-  useVisibleTask$,
-} from "@builder.io/qwik";
+import { $, component$, useOnWindow, useSignal } from "@builder.io/qwik";
 import Button from "~/components/button/primary";
 import DeadlineCard from "~/components/cards/hero-deadline";
 import InfoCard from "~/components/cards/hero-info";
 import Description from "~/components/hero/description";
 
-export default component$(() => {
+export default component$(({ data }: { data: any }) => {
   const mobile = useSignal(false);
 
-  useVisibleTask$(
-    () => {
-      const width = window.innerWidth;
-      mobile.value = width < 450;
-    },
-    { strategy: "document-ready" },
-  );
-
   useOnWindow(
-    "resize",
+    ["load", "resize"],
     $(() => {
       const width = window.innerWidth;
       mobile.value = width < 450;
@@ -32,10 +18,13 @@ export default component$(() => {
   return (
     <header class={styles.container}>
       <div class={styles.box.left}>
-        <h1 class={styles.title}>Interaction Design Apprenticeship</h1>
+        <h1 class={styles.title}>{data.name}</h1>
         {!mobile.value && (
           <>
-            <Description />
+            <Description
+              position={data.position}
+              details={data.description[0].data}
+            />
             <Button />
           </>
         )}
@@ -47,20 +36,29 @@ export default component$(() => {
             width="300"
             height="300"
             class={styles.icon}
+            src={data.company.color_logo.src}
           />
 
           <p class="text-slate-500 md:mt-4">
-            Powered by: <span class="font-bold">Zeptolab</span>
+            Powered by: <span class="font-bold">{data.company.name}</span>
           </p>
           {/* icon */}
         </div>
 
-        <DeadlineCard />
-        <InfoCard />
+        <DeadlineCard deadline={data.application_end_date} />
+        <InfoCard
+          location={data.location.name}
+          duration={data.duration}
+          deadline={data.application_end_date}
+          start={data.scholarship_start_date}
+        />
       </div>
       {mobile.value && (
         <>
-          <Description />
+          <Description
+            position={data.position}
+            details={data.description.data}
+          />
           <Button />
         </>
       )}
@@ -77,5 +75,5 @@ const styles = {
       "flex w-full flex-col-reverse gap-6  md:flex md:flex-row md:items-center",
   },
   title: "text-3xl font-bold text-primary",
-  icon: "h-16 w-16",
+  icon: "h-16 w-16 object-cover",
 };

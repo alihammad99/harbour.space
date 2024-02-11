@@ -1,10 +1,10 @@
 import { component$ } from "@builder.io/qwik";
 
-export default component$(() => {
+export default component$(({ deadline }: { deadline: string }) => {
   return (
     <div class={styles.box}>
       <p class={styles.title}>Application closes in</p>
-      <h4 class={styles.text}>6 Day : 22 Hrs : 56 Min : 13 Seg</h4>
+      <h4 class={styles.text}>{deadline}</h4>
     </div>
   );
 });
