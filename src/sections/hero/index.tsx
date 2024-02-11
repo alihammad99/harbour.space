@@ -76,6 +76,6 @@ const styles = {
     partner:
       "flex w-full flex-col-reverse gap-6  md:flex md:flex-row md:items-center",
   },
-  title: "text-3xl font-bold text-violet-800",
+  title: "text-3xl font-bold text-primary",
   icon: "h-16 w-16",
 };

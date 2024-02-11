@@ -22,7 +22,7 @@ export default component$(() => {
   return (
     <div
       id="nav"
-      class="fixed left-0 top-0 z-[100] flex w-full items-center justify-between bg-violet-600 px-8 py-4 transition-all duration-500 ease-in-out"
+      class="bg-primary fixed left-0 top-0 z-[100] flex w-full items-center justify-between px-8 py-4 transition-all duration-500 ease-in-out"
     >
       <p class="m-0 flex gap-1 text-lg uppercase text-white">
         Harbour.space <span class="pt-1 text-xs">/interaction design</span>
