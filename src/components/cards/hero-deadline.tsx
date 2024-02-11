@@ -11,6 +11,6 @@ export default component$(() => {
 
 const styles = {
   box: "rounded-md border border-slate-300 p-5",
-  title: "m-0 text-md text-violet-700 font-medium",
+  title: "m-0 text-md text-primary font-medium",
   text: "overflow-clip text-clip text-xl text-slate-900",
 };

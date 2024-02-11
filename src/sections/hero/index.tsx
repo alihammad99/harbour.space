@@ -69,13 +69,13 @@ export default component$(() => {
 });
 
 const styles = {
-  container: "container flex flex-wrap justify-between md:flex-row",
+  container: "container pt-32 flex flex-wrap justify-between md:flex-row",
   box: {
     left: "md:w-2/5",
     right: "flex flex-col gap-4 md:w-2/5 md:gap-6",
     partner:
       "flex w-full flex-col-reverse gap-6  md:flex md:flex-row md:items-center",
   },
-  title: "text-3xl font-bold text-violet-800",
+  title: "text-3xl font-bold text-primary",
   icon: "h-16 w-16",
 };

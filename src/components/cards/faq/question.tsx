@@ -11,7 +11,7 @@ export default component$(() => {
       ]}
     >
       <div class="flex w-full">
-        <span class="mr-20 hidden text-xl text-violet-600 lg:block">
+        <span class="mr-20 hidden text-xl text-primary lg:block">
           Program conditions
         </span>
         <div class="w-5/5 flex flex-col gap-3 lg:w-3/5">
@@ -36,7 +36,7 @@ export default component$(() => {
         class={[
           "rounded-full border p-2 transition-all",
           active.value
-            ? "rotate-0 border-violet-500 bg-violet-500"
+            ? "rotate-0 border-primary bg-primary"
             : "rotate-90 border-slate-300",
         ]}
       >
