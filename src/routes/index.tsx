@@ -4,7 +4,6 @@ import Hero from "../sections/hero";
 import About from "~/sections/about";
 import Testimonials from "~/sections/testimonials";
 import FAQ from "~/sections/faq";
-import Footer from "~/sections/footer";
 
 export default component$(() => {
   return (

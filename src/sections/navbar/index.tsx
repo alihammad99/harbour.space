@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 import { $, component$, useOnWindow, useSignal } from "@builder.io/qwik";
 import { GoSliders16 } from "@qwikest/icons/octicons";
 
@@ -10,11 +11,15 @@ export default component$(() => {
       const navbar = document.getElementById("nav");
       const btn = document.getElementById("apply");
       if (scrollY > currentScroll.value) {
-        navbar?.style.top = "-80px";
-        btn?.style.top = "-150px";
+        if (navbar !== null) {
+          navbar.style.top = "-80px";
+        }
+        btn && btn.style && (btn.style.top = "-150px");
       } else {
-        navbar?.style.top = 0;
-        btn?.style.top = "1rem";
+        if (navbar !== null) {
+          navbar.style.top = "0";
+        }
+        btn && btn.style && (btn.style.top = "1rem");
       }
       currentScroll.value = scrollY;
     }),
