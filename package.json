@@ -1,6 +1,7 @@
 {
-  "name": "my-qwik-basic-starter",
+  "name": "harbour.space task",
   "description": "Demo App with Routing built-in (recommended)",
+  "author": "Ali Hammad",
   "engines": {
     "node": ">=15.0.0"
   },
@@ -45,6 +46,7 @@
     "vite-tsconfig-paths": "^4.2.1"
   },
   "dependencies": {
+    "@qwikest/icons": "^0.0.13",
     "@unpic/qwik": "^0.0.41"
   }
 }
