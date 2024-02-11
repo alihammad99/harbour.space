@@ -20,7 +20,7 @@ export default server$(async () => {
       <Hero data={data.scholarship} />
       <About data={data.scholarship} />
       <Testimonials />
-      <FAQ />
+      <FAQ data={data.scholarship.faqs} />
     </>
   );
 });
