@@ -1,16 +1,23 @@
 import { component$ } from "@builder.io/qwik";
 import LabelValue from "../text/label-value";
 
-export default component$(() => {
+interface Props {
+  location: string;
+  duration: string;
+  deadline: string;
+  start: string;
+}
+
+export default component$(({ location, duration, deadline, start }: Props) => {
   return (
     <div class={styles.container}>
       <div class={styles.box.left}>
-        <LabelValue label={"Location"} value={"Bangkok"} />
-        <LabelValue label={"Application deadline"} value={"30 June 2020"} />
+        <LabelValue label={"Location"} value={location} />
+        <LabelValue label={"Application deadline"} value={deadline} />
       </div>
       <div class={styles.box.right}>
-        <LabelValue label={"Duration"} value={"1 Year Full-Time"} />
-        <LabelValue label={"Start date"} value={"3 Aug 2020"} />
+        <LabelValue label={"Duration"} value={`${duration} Year Full-Time`} />
+        <LabelValue label={"Start date"} value={start} />
       </div>
     </div>
   );

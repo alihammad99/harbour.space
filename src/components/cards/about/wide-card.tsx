@@ -1,17 +1,23 @@
 import { component$ } from "@builder.io/qwik";
 import LabelValue from "~/components/text/label-value";
 
-export default component$(() => {
+interface Props {
+  label: string;
+  duration: string;
+}
+
+export default component$(({ label, duration }: Props) => {
   return (
     <div class={styles.container}>
       <LabelValue
         textStyle="text-2xl mt-4 text-slate-600"
-        label="Scholarship value"
-        value="€31,300"
+        label={label}
+        value={`${duration} Year / Full-Time`}
       />
       <div class={styles.line}></div>
       <p class={styles.text}>
-        You’ll be guaranteed a 1 year contract with SCG upon graduation.
+        You’ll be guaranteed a {duration} year contract with SCG upon
+        graduation.
       </p>
     </div>
   );

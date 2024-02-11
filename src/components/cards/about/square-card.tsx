@@ -1,19 +1,22 @@
 import { component$ } from "@builder.io/qwik";
 import LabelValue from "~/components/text/label-value";
 
-export default component$(() => {
+interface Props {
+  label: string;
+  title: string;
+  text: string;
+}
+
+export default component$(({ label, title, text }: Props) => {
   return (
     <div class={styles.container}>
       <LabelValue
         textStyle="text-2xl mt-4 text-slate-600"
-        label="Scholarship value"
-        value="€31,300"
+        label={label}
+        value={title}
       />
       <div class={styles.line}></div>
-      <p class={styles.text}>
-        You will complete 15 modules to graduate. Daily classes are 3 hours,
-        plus coursework to complete in your own time.
-      </p>
+      <p class={styles.text}>{text}</p>
     </div>
   );
 });

@@ -8,7 +8,7 @@ import {
 import { Image } from "@unpic/qwik";
 import AboutCards from "~/components/cards/about";
 
-export default component$(() => {
+export default component$(({ data }: { data: any }) => {
   const mobile = useSignal(false);
 
   useVisibleTask$(
@@ -21,7 +21,7 @@ export default component$(() => {
 
   // Getting window's width
   useOnWindow(
-    "resize",
+    ["load", "resize"],
     $(() => {
       const width = window.innerWidth;
       mobile.value = width < 450;
@@ -58,23 +58,18 @@ export default component$(() => {
           </div>
         </div>
         <div class="z-30 w-full rounded-md border border-t-0 border-slate-200 bg-white p-8 md:w-2/4 md:border-0">
-          <h3 class="mb-8 max-w-[90%] overflow-clip text-2xl font-semibold text-primary md:text-3xl">
+          <h3 class="text-primary mb-8 max-w-[90%] overflow-clip text-2xl font-semibold md:text-3xl">
             About the
             <br /> apprenticeship
           </h3>
-          <p class="text-slate-500">
-            Our scholarships are designed to give talented and driven young
-            people from any background access to top-class education, experience
-            and network. We offer a fully-funded master’s degree alongside an
-            apprenticeship and a guaranteed job upon graduation.
-          </p>
+          <p class="text-slate-500">{data.about[0].data}</p>
         </div>
 
         <div
-          class={`${styles.absolute} z-[-10] mt-8 h-2/4 w-screen bg-primary md:invisible`}
+          class={`${styles.absolute} bg-primary z-[-10] mt-8 h-2/4 w-screen md:invisible`}
         ></div>
       </div>
-      <AboutCards />
+      <AboutCards data={data} />
     </section>
   );
 });

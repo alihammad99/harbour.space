@@ -1,20 +1,29 @@
 import { component$ } from "@builder.io/qwik";
 import LabelValue from "~/components/text/label-value";
 
-export default component$(() => {
+export default component$(({ data }: { data: any }) => {
   return (
     <div class={styles.container}>
       <div class={styles.box.left}>
         <LabelValue
           textStyle="md:text-5xl mt-4"
           label="Scholarship value"
-          value="€31,300"
+          value={`€${data.total_value.toLocaleString()}`}
         />
       </div>
       <div class={styles.box.right}>
-        <LabelValue label="Tuition covered" value="€31,300" />
-        <LabelValue label="Remaining" value="€31,300" />
-        <LabelValue label="Living stipend" value="€31,300" />
+        <LabelValue
+          label="Tuition covered"
+          value={`€${data.tuition.toLocaleString()}`}
+        />
+        <LabelValue
+          label="Remaining"
+          value={`€${data.remaining.toLocaleString()}`}
+        />
+        <LabelValue
+          label="Living stipend"
+          value={`€${data.stipend_per_year.toLocaleString()} (€${data.stipend_per_month.toLocaleString()}/month)`}
+        />
       </div>
     </div>
   );
