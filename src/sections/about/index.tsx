@@ -1,25 +1,10 @@
-import {
-  component$,
-  $,
-  useOnWindow,
-  useSignal,
-  useVisibleTask$,
-} from "@builder.io/qwik";
+import { component$, $, useOnWindow, useSignal } from "@builder.io/qwik";
 import { Image } from "@unpic/qwik";
 import AboutCards from "~/components/cards/about";
 
 export default component$(({ data }: { data: any }) => {
   const mobile = useSignal(false);
 
-  useVisibleTask$(
-    () => {
-      const width = window.innerWidth;
-      mobile.value = width < 450;
-    },
-    { strategy: "document-ready" },
-  );
-
-  // Getting window's width
   useOnWindow(
     ["load", "resize"],
     $(() => {

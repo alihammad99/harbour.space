@@ -10,7 +10,7 @@ const styles = {
 
 export default component$(() => {
   const hover = useSignal(false);
-  const mouse = useStore({ x: 0, y: 0 });
+  const mouse = useStore({ x: 550, y: 300 });
 
   return (
     <div
