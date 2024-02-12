@@ -4,6 +4,7 @@ import Button from "~/components/button/primary";
 import DeadlineCard from "~/components/cards/hero-deadline";
 import InfoCard from "~/components/cards/hero-info";
 import Description from "~/components/hero/description";
+import { Image } from "@unpic/qwik";
 
 export default component$(({ data }: { data: any }) => {
   const mobile = useSignal(false);
@@ -37,13 +38,20 @@ export default component$(({ data }: { data: any }) => {
         )}
       </div>
       <div class={styles.box.right}>
+        <Image
+          alt="pattern"
+          src="/square-pattern.svg"
+          width={600}
+          class="absolute bottom-0 right-0 z-[-1] w-[100rem] translate-x-[20%] translate-y-[20%]"
+        />
+
         <div class={styles.box.partner}>
-          <img
+          <Image
             alt="Partner icon"
-            width="300"
-            height="300"
-            class={styles.icon}
             src={data.company.color_logo.src}
+            width={70}
+            height={70}
+            class={styles.icon}
           />
 
           <p class="text-slate-500 md:mt-4">
@@ -77,7 +85,7 @@ const styles = {
   container: "container pt-32 flex flex-wrap justify-between md:flex-row",
   box: {
     left: "md:w-2/5 relative",
-    right: "flex flex-col gap-4 md:w-2/5 md:gap-6",
+    right: "flex flex-col relative gap-4 md:w-2/5 md:gap-6",
     partner:
       "flex w-full flex-col-reverse gap-6  md:flex md:flex-row md:items-center",
   },
