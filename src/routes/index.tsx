@@ -6,9 +6,10 @@ import Testimonials from "~/sections/testimonials";
 import FAQ from "~/sections/faq";
 import { getData } from "~/api/get-data";
 
-export default server$(async () => {
-  const data = await getData();
+const data = await getData();
+const { meta } = data;
 
+export default server$(async () => {
   return (
     <>
       <Hero data={data.scholarship} />
@@ -20,11 +21,12 @@ export default server$(async () => {
 });
 
 export const head: DocumentHead = {
-  title: "Welcome to Qwik",
+  title: meta.title,
   meta: [
     {
       name: "description",
-      content: "Qwik site description",
+      content: meta.description,
     },
+    { name: "abstract", content: meta.abstract },
   ],
 };
