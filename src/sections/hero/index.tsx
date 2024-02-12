@@ -1,4 +1,4 @@
-import { $, component$, useOnWindow, useSignal } from "@builder.io/qwik";
+import { component$, useSignal } from "@builder.io/qwik";
 import { QwikLottie } from "qwik-lottie-web";
 import Button from "~/components/button/primary";
 import DeadlineCard from "~/components/cards/hero-deadline";
@@ -7,17 +7,7 @@ import Description from "~/components/hero/description";
 import { Image } from "@unpic/qwik";
 
 export default component$(({ data }: { data: any }) => {
-  const mobile = useSignal(false);
   const container = useSignal<HTMLElement>();
-
-  useOnWindow(
-    ["load", "resize"],
-    $(() => {
-      const width = window.innerWidth;
-      mobile.value = width < 450;
-    }),
-  );
-
   const animation = JSON.parse(data.program.json_logo);
 
   return (
@@ -27,22 +17,20 @@ export default component$(({ data }: { data: any }) => {
           <QwikLottie container={container.value} animationData={animation} />
         </div>
         <h1 class={styles.title}>{data.name}</h1>
-        {!mobile.value && (
-          <>
-            <Description
-              position={data.position}
-              details={data.description[0].data}
-            />
-            <Button link={data.program.link} />
-          </>
-        )}
+        <div class="hidden w-full flex-col lg:flex">
+          <Description
+            position={data.position}
+            details={data.description[0].data}
+          />
+          <Button link={data.program.link} />
+        </div>
       </div>
       <div class={styles.box.right}>
         <Image
           alt="pattern"
           src="/square-pattern.svg"
           width={600}
-          class="absolute bottom-0 right-0 z-[-1] w-[100rem] translate-x-[20%] translate-y-[20%]"
+          class="invisible absolute bottom-0 right-0 z-[-1] w-[100rem] translate-x-[20%] translate-y-[20%] lg:visible"
         />
 
         <div class={styles.box.partner}>
@@ -68,21 +56,20 @@ export default component$(({ data }: { data: any }) => {
           start={data.scholarship_start_date}
         />
       </div>
-      {mobile.value && (
-        <>
-          <Description
-            position={data.position}
-            details={data.description.data}
-          />
-          <Button />
-        </>
-      )}
+      <div class="flex flex-col lg:hidden">
+        <Description
+          position={data.position}
+          details={data.description[0].data}
+        />
+        <Button />
+      </div>
     </header>
   );
 });
 
 const styles = {
-  container: "container pt-32 flex flex-wrap justify-between md:flex-row",
+  container:
+    "container max-w-screen overflow-hidden pt-32 flex flex-wrap justify-between md:flex-row",
   box: {
     left: "md:w-2/5 relative",
     right: "flex flex-col relative gap-4 md:w-2/5 md:gap-6",
