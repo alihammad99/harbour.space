@@ -7,13 +7,7 @@ import FAQ from "~/sections/faq";
 import { getData } from "~/api/get-data";
 
 export default server$(async () => {
-  const data = await getData()
-    .then((data) => {
-      return data;
-    })
-    .catch((error) => {
-      console.error("Error during fetch:", error);
-    });
+  const data = await getData();
 
   return (
     <>
