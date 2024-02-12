@@ -52,6 +52,12 @@ body {
   margin: 0;
   line-height: inherit;
 }
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
 /* Styling the scrollbar */
 ::-webkit-scrollbar {
   width: 10px;

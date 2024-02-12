@@ -57,15 +57,22 @@ export default component$(() => {
   });
 
   return (
-    <div class="relative" onMouseDown$={onMouseDown}>
+    <div class="relative " onMouseDown$={onMouseDown}>
       <div class="absolute hidden w-full translate-y-[-38%] items-center justify-center lg:flex">
-        <Image class="translate-x-[1px]" alt="pattern" width={500} src="square-pattern.svg" />
+        <Image
+          class="translate-x-[1px]"
+          alt="pattern"
+          width={500}
+          src="square-pattern.svg"
+        />
         <Image alt="pattern" width={500} src="square-pattern.svg" />
       </div>
-
+      <div class="absolute flex w-screen translate-y-[-38%] items-center justify-center bg-primary  lg:hidden">
+        <Image alt="pattern" width={500} src="colored-pattern.svg" />
+      </div>
       <div
         id="slider-container"
-        class="slider-inner-box z-20 flex h-full gap-8 transition-all duration-500 lg:flex lg:translate-x-[-25%]"
+        class="slider-inner-box z-20 flex h-full gap-8 px-4 transition-all duration-500 lg:flex lg:translate-x-[-25%] lg:px-8"
       >
         <Slot />
       </div>
