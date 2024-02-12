@@ -29,9 +29,7 @@ export default component$(({ data }: { data: any }) => {
               class={styles.filter.list}
             >
               {data.categories.map((category: string) => (
-                <option key={category} class={styles.filter.option}>
-                  {category}
-                </option>
+                <option key={category}>{category}</option>
               ))}
             </select>
           </div>
