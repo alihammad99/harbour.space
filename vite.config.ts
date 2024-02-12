@@ -16,6 +16,17 @@ export default defineConfig((): UserConfig => {
         "Cache-Control": "public, max-age=600",
       },
     },
-    test: {}
+    test: {},
+    build: {
+      target: "es2022"
+    },
+    esbuild: {
+      target: "es2022"
+    },
+    optimizeDeps:{
+      esbuildOptions: {
+        target: "es2022",
+      }
+    }
   };
 });

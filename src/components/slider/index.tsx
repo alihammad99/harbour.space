@@ -59,7 +59,7 @@ export default component$(() => {
   return (
     <div class="relative" onMouseDown$={onMouseDown}>
       <div class="absolute hidden w-full translate-y-[-38%] items-center justify-center lg:flex">
-        <Image alt="pattern" width={500} src="square-pattern.svg" />
+        <Image class="translate-x-[1px]" alt="pattern" width={500} src="square-pattern.svg" />
         <Image alt="pattern" width={500} src="square-pattern.svg" />
       </div>
 
