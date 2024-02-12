@@ -56,8 +56,7 @@ const styles = {
   filter: {
     box: "my-4 flex flex-col justify-center gap-4 md:flex-row md:items-center",
     text: "m-0 text-sm text-slate-500",
-    list: "text-primary h-full w-full font-semibold outline-none",
-    option: "text-primary mt-8 bg-white",
+    list: "text-primary h-full w-full font-semibold outline-none border-0",
   },
   questions: {
     box: "rounded-full border border-slate-300 px-4 py-2",

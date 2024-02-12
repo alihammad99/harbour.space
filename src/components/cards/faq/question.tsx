@@ -20,7 +20,7 @@ export default component$(({ question, answer, type }: Props) => {
       ]}
     >
       <div class="flex w-full">
-        <span class="hidden w-1/4 text-lg text-primary lg:block">{type}</span>
+        <span class="hidden w-1/4 mr-4 text-lg text-primary lg:block">{type}</span>
         <div class="w-5/5 flex flex-col gap-3 lg:w-4/5">
           <h3 class="text-lg font-semibold text-slate-800">{question}</h3>
           <p
