@@ -1,4 +1,5 @@
 import { $, component$, useOnWindow, useSignal } from "@builder.io/qwik";
+import { QwikLottie } from "qwik-lottie-web";
 import Button from "~/components/button/primary";
 import DeadlineCard from "~/components/cards/hero-deadline";
 import InfoCard from "~/components/cards/hero-info";
@@ -6,6 +7,7 @@ import Description from "~/components/hero/description";
 
 export default component$(({ data }: { data: any }) => {
   const mobile = useSignal(false);
+  const container = useSignal<HTMLElement>();
 
   useOnWindow(
     ["load", "resize"],
@@ -15,9 +17,14 @@ export default component$(({ data }: { data: any }) => {
     }),
   );
 
+  const animation = JSON.parse(data.program.json_logo);
+
   return (
     <header class={styles.container}>
       <div class={styles.box.left}>
+        <div class={styles.animation}>
+          <QwikLottie container={container.value} animationData={animation} />
+        </div>
         <h1 class={styles.title}>{data.name}</h1>
         {!mobile.value && (
           <>
@@ -69,11 +76,12 @@ export default component$(({ data }: { data: any }) => {
 const styles = {
   container: "container pt-32 flex flex-wrap justify-between md:flex-row",
   box: {
-    left: "md:w-2/5",
+    left: "md:w-2/5 relative",
     right: "flex flex-col gap-4 md:w-2/5 md:gap-6",
     partner:
       "flex w-full flex-col-reverse gap-6  md:flex md:flex-row md:items-center",
   },
   title: "text-3xl font-bold text-primary",
   icon: "h-16 w-16 object-cover",
+  animation: "absolute right-1 top-[-2em] h-32 w-32",
 };
