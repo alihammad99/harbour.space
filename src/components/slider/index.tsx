@@ -21,7 +21,6 @@ export default component$(() => {
   const slideLeft = $(() => {
     const { box, cardWidth } = getElements();
     if (position.value > 0) {
-      console.log(cardWidth);
       cardWidth > 500
         ? (position.value -= gap + cardWidth / 2)
         : (position.value -= gap + cardWidth);
@@ -35,8 +34,6 @@ export default component$(() => {
       direction.value = newX - startDrag.value < 0 ? "left" : "right";
       if (newX - startDrag.value / 2 < 0) {
         direction.value = "right";
-        console.log(startDrag.value);
-        console.log(newX);
       } else {
         direction.value = "left";
       }
@@ -49,7 +46,6 @@ export default component$(() => {
     } else {
       slideLeft();
     }
-    console.log(direction.value);
     document.removeEventListener("mousemove", onMouseMove);
     // document.removeEventListener("mouseup", onMouseUp);
   });
