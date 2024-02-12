@@ -15,9 +15,9 @@ export default component$(({ data }: { data: any }) => {
             text={data.study_commitment_text}
           />
           <SquareCard
-            label={"Work commitment"}
-            title={data.work_commitment}
-            text={" -"}
+            label={"Internship commitment"}
+            title={`${data.internship_commitment} hours / day`}
+            text={data.internship_commitment_text}
           />
         </div>
         <div class="flex w-full flex-row items-center justify-center py-2 text-center">
