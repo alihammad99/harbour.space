@@ -52,6 +52,7 @@
   },
   "dependencies": {
     "@qwikest/icons": "^0.0.13",
-    "@unpic/qwik": "^0.0.41"
+    "@unpic/qwik": "^0.0.41",
+    "qwik-lottie-web": "^0.4.0"
   }
 }

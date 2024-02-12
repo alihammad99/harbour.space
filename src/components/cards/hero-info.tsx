@@ -24,7 +24,7 @@ export default component$(({ location, duration, deadline, start }: Props) => {
 });
 
 const styles = {
-  container: "rounded-md border border-slate-300 p-5 flex flex-row w-full ",
+  container: "rounded-md bg-white border border-slate-300 p-5 flex flex-row w-full ",
   box: {
     left: "w-3/5 flex flex-col gap-4",
     right: "w-2/5 flex flex-col gap-4",
