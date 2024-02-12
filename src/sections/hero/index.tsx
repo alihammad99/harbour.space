@@ -32,7 +32,7 @@ export default component$(({ data }: { data: any }) => {
               position={data.position}
               details={data.description[0].data}
             />
-            <Button />
+            <Button link={data.program.link} />
           </>
         )}
       </div>
