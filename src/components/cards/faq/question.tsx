@@ -21,7 +21,7 @@ export default component$(({ question, answer, type }: Props) => {
       ]}
     >
       <div class="flex w-full">
-        <span class="text-primary hidden w-1/4 text-lg lg:block">{type}</span>
+        <span class="hidden w-1/4 text-lg text-primary lg:block">{type}</span>
         <div class="w-5/5 flex flex-col gap-3 lg:w-4/5">
           <h3 class="text-lg font-semibold text-slate-800">{question}</h3>
           <p class="text-slate-500">{answer[0].data}</p>
@@ -29,14 +29,12 @@ export default component$(({ question, answer, type }: Props) => {
       </div>
       <button
         onClick$={() => {
-          console.log(active.value);
-
           return (active.value = !active.value);
         }}
         class={[
           "rounded-full border p-2 transition-all",
           active.value
-            ? "border-primary bg-primary rotate-0"
+            ? "rotate-0 border-primary bg-primary"
             : "rotate-90 border-slate-300",
         ]}
       >
