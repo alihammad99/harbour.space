@@ -76,7 +76,7 @@ export default component$(() => {
       >
         <Slot />
       </div>
-      <div class="mt-8 flex w-full place-content-end gap-8 lg:hidden">
+      <div class="mt-8 flex w-full pr-4 place-content-end gap-4 lg:hidden">
         <button
           class={styles.arrow}
           // disabled={position.value === 0}
@@ -107,5 +107,5 @@ const getElements = () => {
 };
 
 const styles = {
-  arrow: "rounded-full border border-slate-200 px-6 py-6",
+  arrow: "rounded-full border border-slate-200 p-5",
 };
