@@ -7,7 +7,7 @@ import FAQ from "~/sections/faq";
 import { getData } from "~/api/get-data";
 
 const data = await getData();
-const { meta } = data;
+const { meta, og_meta } = data;
 
 export default server$(async () => {
   return (
@@ -28,5 +28,8 @@ export const head: DocumentHead = {
       content: meta.description,
     },
     { name: "abstract", content: meta.abstract },
+    { name: "og:title", content: og_meta.title },
+    { name: "og:description", content: og_meta.desc },
+    { name: "og:image", content: og_meta.image_url },
   ],
 };
