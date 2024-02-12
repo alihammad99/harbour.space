@@ -5,13 +5,13 @@ import WideCard from "./wide-card";
 
 export default component$(({ data }: { data: any }) => {
   return (
-    <div class="flex flex-col gap-7 md:h-[90vh] md:flex-row">
+    <div class="flex flex-col gap-7 md:h-[103vh] md:flex-row">
       <VerticalCard data={data} />
       <div class="flex h-full w-full flex-col justify-between md:w-2/3">
         <div class="flex h-2/3 w-full flex-col justify-between gap-8 md:flex-row">
           <SquareCard
             label={"Study commitment"}
-            title={`${data.tudy_commitment} hours / day`}
+            title={`${data.study_commitment} hours / day`}
             text={data.study_commitment_text}
           />
           <SquareCard
