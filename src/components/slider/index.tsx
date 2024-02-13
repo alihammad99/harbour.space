@@ -1,4 +1,4 @@
-import { component$, useSignal, $, Slot } from "@builder.io/qwik";
+import { component$, useSignal, $, Slot, useOnWindow } from "@builder.io/qwik";
 import { GoChevronLeft24, GoChevronRight24 } from "@qwikest/icons/octicons";
 import { Image } from "@unpic/qwik";
 
@@ -9,24 +9,47 @@ export default component$(() => {
   const direction = useSignal("");
   const gap = 32;
 
-  const slideRight = $(() => {
-    const { box, cardWidth, totalSlide } = getElements();
-    if (position.value < totalSlide - cardWidth * 2) {
-      cardWidth > 500
-        ? (position.value += gap + cardWidth / 2)
-        : (position.value += gap + cardWidth);
-    }
-    box.style.transform = `translateX(-${position.value}px)`;
-  });
-  const slideLeft = $(() => {
-    const { box, cardWidth } = getElements();
-    if (position.value > 0) {
-      cardWidth > 500
-        ? (position.value -= gap + cardWidth / 2)
-        : (position.value -= gap + cardWidth);
-    }
-    box.style.transform = `translateX(-${position.value}px)`;
-  });
+  const sliding = {
+    right: $(() => {
+      const width = window.innerWidth;
+      const { box, cardWidth, totalSlides } = elements();
+      if (width >= 800 && position.value < totalSlides / 2 - cardWidth) {
+        console.log("slideRight");
+        position.value += gap + cardWidth / 2;
+      } else if (width < 800 && position.value < totalSlides) {
+        console.log("slideRight");
+        position.value += gap + cardWidth;
+        console.log(position.value);
+      }
+      box.style.transform = `translateX(-${position.value}px)`;
+    }),
+    left: $(() => {
+      const width = window.innerWidth;
+      const { box, cardWidth, totalSlides } = elements();
+      if (width >= 800 && position.value < totalSlides / 2) {
+        position.value -= gap + cardWidth / 2;
+      } else if (
+        width < 800 &&
+        position.value > 0 &&
+        position.value < totalSlides
+      ) {
+        console.log("slideLeft");
+        position.value -= gap + cardWidth;
+        console.log(position.value);
+      }
+      box.style.transform = `translateX(-${position.value}px)`;
+    }),
+  };
+
+  useOnWindow(
+    "load",
+    $(() => {
+      const { cardWidth, totalSlides } = elements();
+      if (cardWidth >= 500 && position.value < totalSlides / 2 - cardWidth) {
+        position.value += gap + cardWidth / 2;
+      }
+    }),
+  );
 
   const onMouseMove = $((e: any) => {
     if (startDrag.value !== 0) {
@@ -42,9 +65,9 @@ export default component$(() => {
   const onMouseUp = $(() => {
     startDrag.value = 0;
     if (direction.value === "right") {
-      slideRight();
+      sliding.right();
     } else {
-      slideLeft();
+      sliding.left();
     }
     document.removeEventListener("mousemove", onMouseMove);
     // document.removeEventListener("mouseup", onMouseUp);
@@ -79,15 +102,15 @@ export default component$(() => {
       <div class="mt-8 flex w-full place-content-end gap-4 pr-4 lg:hidden">
         <button
           class={styles.arrow}
-          // disabled={position.value === 0}
-          onClick$={slideLeft}
+          disabled={!position.value}
+          onClick$={sliding.left}
         >
           <GoChevronLeft24 />
         </button>
         <button
           class={styles.arrow}
           // disabled={position.value === steps.value - 100}
-          onClick$={slideRight}
+          onClick$={sliding.right}
         >
           <GoChevronRight24 />
         </button>
@@ -96,14 +119,14 @@ export default component$(() => {
   );
 });
 
-const getElements = () => {
+const elements = () => {
   const box = document.querySelector(".slider-inner-box") as HTMLElement;
   const container = document.getElementById("slider-container") as HTMLElement;
   const firstChild = container.firstElementChild as HTMLElement | null;
   const cardWidth = firstChild ? firstChild.offsetWidth : 0;
   const childrenCount = container.childElementCount;
-  const totalSlide = (cardWidth + 32) * childrenCount;
-  return { box, childrenCount, container, cardWidth, totalSlide };
+  const totalSlides = (cardWidth + 32) * childrenCount;
+  return { box, childrenCount, container, cardWidth, totalSlides };
 };
 
 const styles = {

@@ -4,7 +4,7 @@ import Slider from "~/components/slider";
 
 const styles = {
   container:
-    "w-screen flex pt-28 flex-col cursor-none overflow-x-hidden overflow-y-visible z-50 mt-10 relative",
+    "max-w-screen w-screen flex pt-28 flex-col cursor-none overflow-x-hidden overflow-y-visible z-50 mt-10 relative",
   arrow: "rounded-full border border-slate-200 px-6 py-6",
 };
 

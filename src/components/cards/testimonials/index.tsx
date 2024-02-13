@@ -3,7 +3,7 @@ import { Image } from "@unpic/qwik";
 
 export default component$(() => {
   return (
-    <div class="relative h-full min-w-[100%] select-none rounded-md border border-slate-300 bg-white lg:min-w-[50%]">
+    <div class="relative h-full min-w-[100%] select-none rounded-md border border-slate-300 bg-white md:min-w-[50%]">
       <div class="mx-auto flex h-2/5 w-full items-center gap-3 px-8 py-8">
         <div class="flex h-full w-full items-center gap-5">
           <div class="h-16 w-16 rounded-full">
