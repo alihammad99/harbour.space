@@ -14,10 +14,8 @@ export default component$(() => {
       const width = window.innerWidth;
       const { box, cardWidth, totalSlides } = elements();
       if (width >= 800 && position.value < totalSlides / 2 - cardWidth) {
-        console.log("slideRight");
         position.value += gap + cardWidth / 2;
       } else if (width < 800 && position.value < totalSlides) {
-        console.log("slideRight");
         position.value += gap + cardWidth;
         console.log(position.value);
       }
@@ -33,9 +31,7 @@ export default component$(() => {
         position.value > 0 &&
         position.value < totalSlides
       ) {
-        console.log("slideLeft");
         position.value -= gap + cardWidth;
-        console.log(position.value);
       }
       box.style.transform = `translateX(-${position.value}px)`;
     }),
