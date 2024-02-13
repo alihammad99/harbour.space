@@ -1,4 +1,4 @@
-import { component$, useSignal, useStore } from "@builder.io/qwik";
+import { component$, useSignal, $ } from "@builder.io/qwik";
 import Testimonials from "~/components/cards/testimonials";
 import Slider from "~/components/slider";
 
@@ -10,23 +10,38 @@ const styles = {
 
 export default component$(() => {
   const hover = useSignal(false);
-  const mouse = useStore({ x: 550, y: 300 });
-
+  const handleDrag = $((mouse: string, e?: any) => {
+    const drag = document.getElementById("drag") as HTMLElement;
+    switch (mouse) {
+      case "over":
+        hover.value = true;
+        drag.style.visibility = "visible";
+        break;
+      case "leave":
+        hover.value = false;
+        drag.style.visibility = "hidden";
+        drag.style.top = "50%";
+        drag.style.left = "50%";
+        break;
+      case "move":
+        drag.style.visibility = `${e.clientY}px`;
+        drag.style.top = `${e.clientY}px`;
+        drag.style.left = `${e.clientX}px`;
+        break;
+    }
+  });
   return (
     <div
-      onMouseOver$={() => (hover.value = true)}
-      onMouseLeave$={() => (hover.value = false)}
-      onMouseMove$={(e) => {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-      }}
+      onMouseOver$={() => handleDrag("over")}
+      onMouseLeave$={() => handleDrag("leave")}
+      onMouseMove$={(e) => handleDrag("move", e)}
       class={styles.container}
     >
       <div
-        style={{ top: mouse.y, left: mouse.x }}
+        id="drag"
         class={[
-          "pointer-events-none z-[100] hidden translate-x-[-50%] translate-y-[-50%] rounded-full bg-primary px-8 py-4 font-semibold text-white transition-all duration-75 ease-linear lg:visible lg:fixed lg:flex ",
-          hover.value ? "opacity-100" : "scale-75 opacity-0",
+          "pointer-events-none invisible z-[100] translate-x-[-50%] translate-y-[-50%] rounded-full bg-primary px-8 py-4 font-semibold text-white transition-all duration-75 ease-linear lg:visible lg:fixed lg:flex ",
+          hover.value ? `opacity-100` : "scale-75 opacity-0",
         ]}
       >
         Drag

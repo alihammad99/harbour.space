@@ -58,7 +58,7 @@ export default component$(() => {
 
   return (
     <div class="relative " onMouseDown$={onMouseDown}>
-      <div class="absolute hidden w-full translate-y-[-38%] items-center justify-center lg:flex">
+      <div class="pointer-events-none absolute hidden w-full translate-y-[-38%] items-center justify-center lg:flex">
         <Image
           class="translate-x-[1px]"
           alt="pattern"
@@ -76,7 +76,7 @@ export default component$(() => {
       >
         <Slot />
       </div>
-      <div class="mt-8 flex w-full pr-4 place-content-end gap-4 lg:hidden">
+      <div class="mt-8 flex w-full place-content-end gap-4 pr-4 lg:hidden">
         <button
           class={styles.arrow}
           // disabled={position.value === 0}
