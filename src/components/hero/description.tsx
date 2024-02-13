@@ -20,7 +20,7 @@ export default component$(
 );
 
 const styles = {
-  container: "container flex-wrap py-8",
+  container: "flex-wrap py-8",
   content: "text-base text-slate-600",
   bold: "font-bold text-slate-800",
 };

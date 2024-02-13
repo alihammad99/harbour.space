@@ -46,7 +46,7 @@ export default component$(({ data }: { data: any }) => {
 });
 
 const styles = {
-  container: "container pb-16 pt-24",
+  container: "container lg:pb-16 pb-2 pt-24",
   title: {
     box: "flex w-full flex-col justify-between pb-4 md:flex-row lg:border-b",
     text: "text-primary text-3xl font-bold",

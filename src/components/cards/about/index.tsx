@@ -5,7 +5,7 @@ import WideCard from "./wide-card";
 
 export default component$(({ data }: { data: any }) => {
   return (
-    <div class="flex flex-col gap-7 md:h-[103vh] md:flex-row">
+    <div class="flex flex-col gap-7 md:h-[65vh] md:flex-row lg:h-[103vh]">
       <VerticalCard data={data} />
       <div class="flex h-full w-full flex-col justify-between md:w-2/3">
         <div class="flex h-2/3 w-full flex-col justify-between gap-8 md:flex-row">
