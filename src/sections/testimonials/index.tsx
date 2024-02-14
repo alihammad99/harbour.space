@@ -1,5 +1,5 @@
 import { component$, useSignal, $ } from "@builder.io/qwik";
-import Testimonials from "~/components/cards/testimonials";
+import TestimonialCard from "~/components/cards/testimonials";
 import Slider from "~/components/slider";
 
 const styles = {
@@ -47,9 +47,9 @@ export default component$(() => {
         Drag
       </div>
       <Slider>
-        <Testimonials />
-        <Testimonials />
-        <Testimonials />
+        <TestimonialCard />
+        <TestimonialCard />
+        <TestimonialCard />
       </Slider>
     </div>
   );
