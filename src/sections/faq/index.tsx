@@ -17,13 +17,13 @@ export default component$(({ data }: { data: any }) => {
       {/* Title & Filters */}
       <div class={styles.title.box}>
         <h2 class={styles.title.text}>
-          Frequently Asked
+          Frequently asked
           <br />
-          Questions
+          questions
         </h2>
         <div class={styles.filter.box}>
           <p class={styles.filter.text}>Filter by:</p>
-          <div class={styles.questions.box}>
+          <div class="rounded-full border border-slate-300 px-4 py-2">
             <select
               onChange$={(e: any) => handleFilter(e.target.value)}
               class={styles.filter.list}
@@ -46,17 +46,14 @@ export default component$(({ data }: { data: any }) => {
 });
 
 const styles = {
-  container: "container lg:pb-16 pb-2 pt-24",
+  container: "container lg:pb-20 pb-2 pt-24",
   title: {
-    box: "flex w-full flex-col justify-between pb-4 md:flex-row lg:border-b",
-    text: "text-primary text-3xl font-bold",
+    box: "flex w-full flex-col justify-between pb-10 md:flex-row lg:border-b",
+    text: "text-primary text-4xl font-medium leading-tight",
   },
   filter: {
-    box: "my-4 flex flex-col justify-center gap-4 md:flex-row md:items-center",
-    text: "m-0 text-sm text-slate-500",
-    list: "text-primary h-full w-full font-semibold outline-none border-0",
-  },
-  questions: {
-    box: "rounded-full border border-slate-300 px-4 py-2",
+    box: "my-4 flex flex-col justify-center gap-4 border-none md:flex-row md:items-center outline-none",
+    text: "m-0 text-sm font-light text-slate-500",
+    list: "text-primary rounded-full font-medium outline-none",
   },
 };

@@ -14,18 +14,16 @@ interface Props {
 export default component$(({ question, answer, type }: Props) => {
   const active = useSignal(false);
   return (
-    <li
-      class={[
-        "my-8 flex items-start justify-between overflow-clip border-b transition-all duration-500",
-      ]}
-    >
+    <li class="my-4 flex items-start justify-between overflow-clip border-b py-4 transition-all duration-500">
       <div class="flex w-full">
-        <span class="hidden w-1/4 mr-4 text-lg text-primary lg:block">{type}</span>
+        <span class="mr-4 hidden w-1/4 text-lg font-medium text-primary lg:block">
+          {type}
+        </span>
         <div class="w-5/5 flex flex-col gap-3 lg:w-4/5">
-          <h3 class="text-lg font-semibold text-slate-800">{question}</h3>
+          <h3 class="text-lg font-medium  text-slate-800">{question}</h3>
           <p
             class={[
-              "text-slate-500 transition-all ease-in",
+              "font-light text-slate-600 transition-all ease-in",
               active.value ? "max-h-auto opacity-100" : "max-h-0 opacity-0",
             ]}
           >
@@ -38,7 +36,7 @@ export default component$(({ question, answer, type }: Props) => {
           return (active.value = !active.value);
         }}
         class={[
-          "rounded-full border p-2 transition-all ease-in duration-200",
+          "rounded-full border p-2 transition-all duration-200 ease-in",
           active.value
             ? "rotate-0 border-primary bg-primary"
             : "rotate-90 border-slate-300",
