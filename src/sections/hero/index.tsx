@@ -42,10 +42,10 @@ export default component$(({ data }: { data: any }) => {
             class={styles.icon}
           />
 
-          <p class="text-slate-500 md:mt-4">
-            Powered by: <span class="font-bold">{data.company.name}</span>
+          <p class="flex font-light text-slate-500 lg:flex-col">
+            Powered by:{" "}
+            <span class="text-lg text-slate-600">{data.company.name}</span>
           </p>
-          {/* icon */}
         </div>
 
         <DeadlineCard deadline={data.application_end_date} />
@@ -74,9 +74,9 @@ const styles = {
     left: "md:w-2/5 relative",
     right: "flex flex-col relative gap-4 md:w-2/5 md:gap-6",
     partner:
-      "flex w-full flex-col-reverse gap-6  md:flex md:flex-row md:items-center",
+      "flex w-full flex-col-reverse gap-6 mt-8 mb-2 lg:m-0 md:flex md:flex-row md:items-center",
   },
-  title: "text-3xl font-bold text-primary z-10",
+  title: "text-4xl font-medium text-primary z-10",
   icon: "h-16 w-16 object-cover",
   animation: "absolute right-1 top-[-2em] h-32 w-32 z-[-1]",
 };

@@ -21,6 +21,6 @@ export default component$(
 
 const styles = {
   container: "flex-wrap py-8",
-  content: "text-base text-slate-600",
-  bold: "font-bold text-slate-800",
+  content: "text-base font-light mb-6 text-slate-600",
+  bold: "font-medium text-lg mb-6 text-slate-800",
 };

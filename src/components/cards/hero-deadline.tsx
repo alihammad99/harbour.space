@@ -12,6 +12,6 @@ export default component$(({ deadline }: { deadline: string }) => {
 
 const styles = {
   box: "rounded-md border border-slate-300 p-5",
-  title: "m-0 text-md text-primary font-medium",
-  text: "overflow-clip text-clip text-xl text-slate-900",
+  title: "text-md text-primary font-medium",
+  text: "overflow-clip mt-2 font-light text-clip text-2xl text-slate-900",
 };
