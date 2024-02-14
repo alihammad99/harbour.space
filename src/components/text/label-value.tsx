@@ -21,5 +21,5 @@ export default component$(
 
 const styles = {
   label: "m-0 text-primary text-md font-medium",
-  value: "overflow-clip text-md text-clip",
+  value: "overflow-clip text-md text-clip font-thin	not-italic",
 };

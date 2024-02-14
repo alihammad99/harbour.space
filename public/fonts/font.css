@@ -1,0 +1,69 @@
+@font-face {
+  font-family: "Apercu Pro";
+  src:
+    local("Apercu Pro Medium"),
+    local("./apercu-pro/ApercuPro-Medium"),
+    url("./apercu-pro/ApercuPro-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Apercu Pro";
+  src:
+    local("Apercu Pro ExtraLight"),
+    local("./apercu-pro/ApercuPro-ExtraLight"),
+    url("./apercu-pro/ApercuPro-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Apercu Pro";
+  src:
+    local("Apercu Pro Black"),
+    local("./apercu-pro/ApercuPro-Black"),
+    url("./apercu-pro/ApercuPro-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Apercu Pro";
+  src:
+    local("Apercu Pro Bold"),
+    local("./apercu-pro/ApercuPro-Bold"),
+    url("./apercu-pro/ApercuPro-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Apercu Pro";
+  src:
+    local("Apercu Pro Thin"),
+    local("./apercu-pro/ApercuPro-Thin"),
+    url("./apercu-pro/ApercuPro-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Apercu Pro";
+  src:
+    local("Apercu Pro Regular"),
+    local("./apercu-pro/ApercuPro-Regular"),
+    url("./apercu-pro/ApercuPro-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Apercu Pro";
+  src:
+    local("Apercu Pro Light"),
+    local("./apercu-pro/ApercuPro-Light"),
+    url("./apercu-pro/ApercuPro-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
