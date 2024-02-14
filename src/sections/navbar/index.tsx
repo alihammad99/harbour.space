@@ -29,12 +29,12 @@ export default component$(() => {
       id="nav"
       class="fixed left-0 top-0 z-[100] flex w-full items-center justify-between bg-primary px-8 py-4 transition-all duration-500 ease-in-out"
     >
-      <p class="m-0 flex gap-1 text-lg uppercase text-white">
+      <p class="m-0 flex gap-1 font-medium uppercase text-white">
         Harbour.space <span class="pt-1 text-xs">/Data Science</span>
       </p>
       <button
         id="apply"
-        class="invisible fixed right-32 top-4 h-24 w-24 rounded-full bg-green-500 text-sm font-semibold uppercase leading-4 text-white transition-all duration-500 ease-in-out hover:bg-green-600 lg:visible"
+        class="bg-success invisible fixed right-32 top-4 h-24 w-24 rounded-full text-sm font-medium uppercase leading-tight tracking-wide text-white transition-all duration-500 ease-in-out hover:scale-105 hover:bg-green-500 lg:visible"
       >
         <a
           target="_blank"
