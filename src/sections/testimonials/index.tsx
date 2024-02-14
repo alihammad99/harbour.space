@@ -1,6 +1,7 @@
-import { component$, useSignal, $ } from "@builder.io/qwik";
+import { $, component$, useOnWindow, useSignal } from "@builder.io/qwik";
 import TestimonialCard from "~/components/cards/testimonials";
 import Slider from "~/components/slider";
+import { handleDrag } from "~/utils/handle-drag";
 
 const styles = {
   container:
@@ -10,42 +11,48 @@ const styles = {
 
 export default component$(() => {
   const hover = useSignal(false);
-  const handleDrag = $((mouse: string, e?: any) => {
-    const drag = document.getElementById("drag") as HTMLElement;
-    switch (mouse) {
-      case "over":
-        hover.value = true;
-        drag.style.visibility = "visible";
-        break;
-      case "leave":
-        hover.value = false;
-        drag.style.visibility = "hidden";
-        drag.style.top = "50%";
-        drag.style.left = "50%";
-        break;
-      case "move":
-        drag.style.visibility = `${e.clientY}px`;
-        drag.style.top = `${e.clientY}px`;
-        drag.style.left = `${e.clientX}px`;
-        break;
-    }
+  const laptop = useSignal(false);
+
+  const check = $(() => {
+    const { innerWidth, innerHeight } = window;
+    return (laptop.value = innerWidth > innerHeight);
   });
+  useOnWindow(["load", "resize"], check);
+
   return (
     <div
-      onMouseOver$={() => handleDrag("over")}
-      onMouseLeave$={() => handleDrag("leave")}
-      onMouseMove$={(e) => handleDrag("move", e)}
+      onMouseOver$={() => {
+        if (laptop.value) {
+          hover.value = true;
+          handleDrag("over");
+        }
+      }}
+      onMouseLeave$={() => {
+        if (laptop.value) {
+          hover.value = false;
+          handleDrag("leave");
+        }
+      }}
+      onMouseMove$={(e) => {
+        if (laptop.value) {
+          handleDrag("move", e);
+        }
+      }}
       class={styles.container}
     >
-      <div
-        id="drag"
-        class={[
-          "pointer-events-none invisible z-[100] translate-x-[-50%] translate-y-[-50%] rounded-full bg-primary px-8 py-4 font-semibold text-white transition-all duration-75 ease-linear lg:visible lg:fixed lg:flex ",
-          hover.value ? `opacity-100` : "scale-75 opacity-0",
-        ]}
-      >
-        Drag
-      </div>
+      {laptop.value && (
+        <div
+          id="drag"
+          class={[
+            "pointer-events-none z-[100] translate-x-[-50%] translate-y-[-50%] rounded-full bg-primary px-8 py-4 font-semibold text-white transition-all duration-75 ease-linear lg:visible lg:fixed lg:flex ",
+            hover.value
+              ? `scale-100 opacity-100`
+              : "invisible scale-75 opacity-0",
+          ]}
+        >
+          Drag
+        </div>
+      )}
       <Slider>
         <TestimonialCard />
         <TestimonialCard />

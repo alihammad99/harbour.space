@@ -17,7 +17,7 @@ export default component$(({ data }: { data: any }) => {
           <QwikLottie container={container.value} animationData={animation} />
         </div>
         <h1 class={styles.title}>{data.name}</h1>
-        <div class="hidden w-full flex-col lg:flex">
+        <div class="hidden w-full flex-col md:flex">
           <Description
             position={data.position}
             details={data.description[0].data}
@@ -43,7 +43,7 @@ export default component$(({ data }: { data: any }) => {
           />
 
           <p class={styles.partnerText}>
-            Powered by:{" "}
+            Powered by:
             <span class={styles.partnerName}>{data.company.name}</span>
           </p>
         </div>
@@ -56,7 +56,7 @@ export default component$(({ data }: { data: any }) => {
           start={data.scholarship_start_date}
         />
       </div>
-      <div class="flex flex-col lg:hidden">
+      <div class="flex flex-col md:hidden">
         <Description
           position={data.position}
           details={data.description[0].data}
@@ -80,5 +80,5 @@ const styles = {
   patternImage:
     "invisible absolute bottom-0 right-0 z-[-1] w-[100rem] translate-x-[20%] translate-y-[20%] lg:visible",
   partnerText: "flex font-light text-slate-500 lg:flex-col",
-  partnerName: "text-lg text-slate-600",
+  partnerName: "text-lg pl-1 lg:p-0 text-slate-600",
 };
