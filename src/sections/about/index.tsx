@@ -61,8 +61,7 @@ export default component$(({ data }: { data: any }) => {
 
 const styles = {
   container:
-    "pt-32 pb-16 relative mx-4 flex flex-wrap justify-between md:flex-row",
-
+    "pt-16 mt-16 lg:mt-12 relative flex flex-wrap justify-between md:flex-row",
   absolute:
     "absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]",
 };

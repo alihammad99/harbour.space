@@ -72,7 +72,7 @@ const styles = {
     "container max-w-screen overflow-hidden pt-32 flex flex-wrap justify-between md:flex-row",
   box: {
     left: "md:w-2/5 relative",
-    right: "flex flex-col relative gap-4 md:w-2/5 md:gap-6",
+    right: "flex flex-col relative gap-4 w-full md:w-2/5 md:gap-6",
     partner:
       "flex w-full flex-col-reverse gap-6 mt-8 mb-2 lg:m-0 md:flex md:flex-row md:items-center",
   },

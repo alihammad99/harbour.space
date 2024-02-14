@@ -24,7 +24,7 @@ export default component$(() => {
     left: $(() => {
       const width = window.innerWidth;
       const { box, cardWidth, totalSlides } = elements();
-      if (width >= 800 && position.value < totalSlides / 2) {
+      if (width >= 800 && position.value > 0) {
         position.value -= gap + cardWidth / 2;
       } else if (
         width < 800 &&
