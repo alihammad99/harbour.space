@@ -17,7 +17,7 @@ export default component$(({ data }: { data: any }) => {
           <QwikLottie container={container.value} animationData={animation} />
         </div>
         <h1 class={styles.title}>{data.name}</h1>
-        <div class="hidden w-full flex-col lg:flex">
+        <div class="hidden w-full flex-col md:flex">
           <Description
             position={data.position}
             details={data.description[0].data}
@@ -56,7 +56,7 @@ export default component$(({ data }: { data: any }) => {
           start={data.scholarship_start_date}
         />
       </div>
-      <div class="flex flex-col lg:hidden">
+      <div class="flex flex-col md:hidden">
         <Description
           position={data.position}
           details={data.description[0].data}
