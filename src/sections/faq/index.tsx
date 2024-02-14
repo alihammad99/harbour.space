@@ -21,9 +21,9 @@ export default component$(({ data }: { data: any }) => {
           <br />
           questions
         </h2>
-        <div class={styles.filter.box}>
+        <div class={styles.filter.container}>
           <p class={styles.filter.text}>Filter by:</p>
-          <div class="rounded-full border border-slate-300 px-5 py-4 lg:px-4 lg:py-3">
+          <div class={styles.filter.box}>
             <select
               onChange$={(e: any) => handleFilter(e.target.value)}
               class={styles.filter.list}
@@ -52,7 +52,9 @@ const styles = {
     text: "text-primary text-4xl font-medium leading-tight",
   },
   filter: {
-    box: "mt-12 lg:m-0 flex flex-col justify-center gap-4 border-none md:flex-row md:items-center outline-none",
+    container:
+      "mt-12 lg:m-0 flex flex-col justify-center gap-4 border-none md:flex-row md:items-center outline-none",
+    box: "rounded-full border border-slate-300 px-5 py-4 lg:px-4 lg:py-3",
     text: "m-0 text-sm font-light text-slate-500",
     list: "text-primary w-full rounded-full font-medium outline-none",
   },

@@ -76,26 +76,23 @@ export default component$(() => {
   });
 
   return (
-    <div class="relative " onMouseDown$={onMouseDown}>
-      <div class="pointer-events-none absolute hidden w-full translate-y-[-38%] items-center justify-center lg:flex">
+    <div class={styles.relativeContainer} onMouseDown$={onMouseDown}>
+      <div class={styles.hiddenAbsoluteContainer}>
         <Image
-          class="translate-x-[1px]"
+          class={styles.translateImage}
           alt="pattern"
           width={500}
           src="square-pattern.svg"
         />
         <Image alt="pattern" width={500} src="square-pattern.svg" />
       </div>
-      <div class="absolute flex w-screen translate-y-[-38%] items-center justify-center bg-primary  lg:hidden">
+      <div class={styles.absoluteContainer}>
         <Image alt="pattern" width={500} src="colored-pattern.svg" />
       </div>
-      <div
-        id="slider-container"
-        class="slider-inner-box z-20 flex h-full gap-8 px-4 transition-all duration-500 lg:flex lg:translate-x-[-25%] lg:px-8"
-      >
+      <div class={styles.sliderContainer} id="slider-container">
         <Slot />
       </div>
-      <div class="mt-8 flex w-full place-content-end gap-4 pr-4 lg:hidden">
+      <div class={styles.mobileButtonContainer}>
         <button
           class={styles.arrow}
           disabled={!position.value}
@@ -103,11 +100,7 @@ export default component$(() => {
         >
           <GoChevronLeft24 />
         </button>
-        <button
-          class={styles.arrow}
-          // disabled={position.value === steps.value - 100}
-          onClick$={sliding.right}
-        >
+        <button class={styles.arrow} onClick$={sliding.right}>
           <GoChevronRight24 />
         </button>
       </div>
@@ -126,5 +119,15 @@ const elements = () => {
 };
 
 const styles = {
+  relativeContainer: "relative",
+  hiddenAbsoluteContainer:
+    "pointer-events-none absolute hidden w-full translate-y-[-38%] items-center justify-center lg:flex",
+  translateImage: "translate-x-[1px]",
+  absoluteContainer:
+    "absolute flex w-screen translate-y-[-38%] items-center justify-center bg-primary  lg:hidden",
+  sliderContainer:
+    "slider-inner-box z-20 flex h-full gap-8 px-4 transition-all duration-500 lg:flex lg:translate-x-[-25%] lg:px-8",
+  mobileButtonContainer:
+    "mt-8 flex w-full place-content-end gap-4 pr-4 lg:hidden",
   arrow: "rounded-full border border-slate-200 p-5",
 };

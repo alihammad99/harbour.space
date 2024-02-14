@@ -12,7 +12,7 @@ export default component$(({ data }: { data: any }) => {
 
   return (
     <header class={styles.container}>
-      <div class={styles.box.left}>
+      <div class={styles.leftBox}>
         <div class={styles.animation}>
           <QwikLottie container={container.value} animationData={animation} />
         </div>
@@ -25,26 +25,26 @@ export default component$(({ data }: { data: any }) => {
           <Button link={data.program.link} />
         </div>
       </div>
-      <div class={styles.box.right}>
+      <div class={styles.rightBox}>
         <Image
           alt="pattern"
           src="/square-pattern.svg"
           width={600}
-          class="invisible absolute bottom-0 right-0 z-[-1] w-[100rem] translate-x-[20%] translate-y-[20%] lg:visible"
+          class={styles.patternImage}
         />
 
-        <div class={styles.box.partner}>
+        <div class={styles.partnerBox}>
           <Image
             alt="Partner icon"
             src={data.company.color_logo.src}
             width={70}
             height={70}
-            class={styles.icon}
+            class={styles.partnerIcon}
           />
 
-          <p class="flex font-light text-slate-500 lg:flex-col">
+          <p class={styles.partnerText}>
             Powered by:{" "}
-            <span class="text-lg text-slate-600">{data.company.name}</span>
+            <span class={styles.partnerName}>{data.company.name}</span>
           </p>
         </div>
 
@@ -70,13 +70,15 @@ export default component$(({ data }: { data: any }) => {
 const styles = {
   container:
     "container max-w-screen overflow-hidden pt-32 flex flex-wrap justify-between md:flex-row",
-  box: {
-    left: "md:w-2/5 relative",
-    right: "flex flex-col relative gap-4 w-full md:w-2/5 md:gap-6",
-    partner:
-      "flex w-full flex-col-reverse gap-6 mt-8 mb-2 lg:m-0 md:flex md:flex-row md:items-center",
-  },
+  leftBox: "md:w-2/5 relative",
+  rightBox: "flex flex-col relative gap-4 w-full md:w-2/5 md:gap-6",
+  partnerBox:
+    "flex w-full flex-col-reverse gap-6 mt-8 mb-2 lg:m-0 md:flex md:flex-row md:items-center",
   title: "text-4xl font-medium text-primary z-10",
-  icon: "h-16 w-16 object-cover",
+  partnerIcon: "h-16 w-16 object-cover",
   animation: "absolute right-1 top-[-2em] h-32 w-32 z-[-1]",
+  patternImage:
+    "invisible absolute bottom-0 right-0 z-[-1] w-[100rem] translate-x-[20%] translate-y-[20%] lg:visible",
+  partnerText: "flex font-light text-slate-500 lg:flex-col",
+  partnerName: "text-lg text-slate-600",
 };

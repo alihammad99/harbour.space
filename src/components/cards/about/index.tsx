@@ -5,10 +5,10 @@ import WideCard from "./wide-card";
 
 export default component$(({ data }: { data: any }) => {
   return (
-    <div class="flex flex-col gap-7 md:h-[65vh] md:flex-row lg:h-[103vh]">
+    <div class={styles.container}>
       <VerticalCard data={data} />
-      <div class="flex h-full w-full flex-col justify-between md:w-2/3">
-        <div class="flex h-2/3 w-full flex-col justify-between gap-8 md:flex-row">
+      <div class={styles.flexContainer}>
+        <div class={styles.flexColumn}>
           <SquareCard
             label={"Study commitment"}
             title={`${data.study_commitment} hours / day`}
@@ -20,13 +20,23 @@ export default component$(({ data }: { data: any }) => {
             text={data.internship_commitment_text}
           />
         </div>
-        <div class="flex w-full flex-row items-center justify-center py-2 text-center">
-          <span class="h-[0.7px] w-full bg-slate-300"></span>
-          <p class="m-2 text-center text-xs">GRADUATION</p>
-          <span class="h-[0.7px] w-full bg-slate-300"></span>
+        <div class={styles.flexCenter}>
+          <span class={styles.divider}></span>
+          <p class={styles.graduationText}>GRADUATION</p>
+          <span class={styles.divider}></span>
         </div>
         <WideCard label={"A full-time contract"} duration={data.duration} />
       </div>
     </div>
   );
 });
+
+const styles = {
+  container: "flex flex-col gap-7 md:h-[65vh] md:flex-row lg:h-[103vh]",
+  flexContainer: "flex h-full w-full flex-col justify-between md:w-2/3",
+  flexColumn: "flex h-2/3 w-full flex-col justify-between gap-8 md:flex-row",
+  flexCenter:
+    "flex w-full flex-row items-center justify-center py-2 text-center",
+  divider: "h-[0.7px] w-full bg-slate-300",
+  graduationText: "m-2 text-center text-xs",
+};
