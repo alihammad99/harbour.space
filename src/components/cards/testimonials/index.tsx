@@ -10,19 +10,23 @@ export default component$(() => {
             <Image alt="avatar" src="/avatar.png" width={300} />
           </div>
           <div>
-            <p class="m-0 p-0 font-bold text-slate-800">Irene Pereyra</p>
-            <p class="m-0 p-0 text-slate-500">Interaction Design Fellow ‘19</p>
+            <p class="translate-y-1 font-medium text-slate-800">
+              Irene Pereyra
+            </p>
+            <p class="font-light text-slate-600 ">
+              Interaction Design Fellow ‘19
+            </p>
           </div>
         </div>
         <span class="text-lg font-bold text-gray-400">in</span>
       </div>
       <div class="h-3/5 w-full items-center justify-center bg-slate-50 px-16 py-12">
-        <p class="text-xl opacity-70">
+        <p class="text-xl font-light text-slate-600">
           This Fellowship was a turning point in my career. I wouldn’t be where
           I am today without the financial support and experienced offered
           through the program.
         </p>
-        <p class="mt-6 text-sm opacity-80">Education · B.A. Visual Design</p>
+        <p class="mt-6 text-sm font-light text-slate-700">Education · B.A. Visual Design</p>
       </div>
     </div>
   );

@@ -20,6 +20,6 @@ export default component$(
 );
 
 const styles = {
-  label: "m-0 text-primary text-md font-medium",
-  value: "overflow-clip text-md text-clip",
+  label: "text-primary text-md font-medium",
+  value: "overflow-clip text-md text-clip font-light not-italic",
 };

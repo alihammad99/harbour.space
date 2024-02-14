@@ -1,10 +1,10 @@
 import { component$, useSignal, $ } from "@builder.io/qwik";
-import Testimonials from "~/components/cards/testimonials";
+import TestimonialCard from "~/components/cards/testimonials";
 import Slider from "~/components/slider";
 
 const styles = {
   container:
-    "max-w-screen w-screen flex pt-28 flex-col cursor-none overflow-x-hidden overflow-y-visible z-50 mt-10 relative",
+    "max-w-screen w-screen flex pt-28 flex-col cursor-none overflow-x-hidden overflow-y-visible z-50 lg:mt-10 relative",
   arrow: "rounded-full border border-slate-200 px-6 py-6",
 };
 
@@ -47,9 +47,9 @@ export default component$(() => {
         Drag
       </div>
       <Slider>
-        <Testimonials />
-        <Testimonials />
-        <Testimonials />
+        <TestimonialCard />
+        <TestimonialCard />
+        <TestimonialCard />
       </Slider>
     </div>
   );

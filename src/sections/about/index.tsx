@@ -43,11 +43,11 @@ export default component$(({ data }: { data: any }) => {
           </div>
         </div>
         <div class="z-30 w-full rounded-md border border-t-0 border-slate-200 bg-white p-8 md:w-2/4 md:border-0">
-          <h3 class="mb-8 max-w-[90%] overflow-clip text-2xl font-semibold text-primary md:text-3xl">
+          <h3 class="mb-8 max-w-[90%] overflow-clip text-2xl font-medium text-primary md:text-4xl">
             About the
             <br /> apprenticeship
           </h3>
-          <p class="text-slate-500">{data.about[0].data}</p>
+          <p class="font-light text-slate-600">{data.about[0].data}</p>
         </div>
 
         <div
@@ -60,8 +60,8 @@ export default component$(({ data }: { data: any }) => {
 });
 
 const styles = {
-  container: "pt-32 pb-16 relative mx-4 flex flex-wrap justify-between md:flex-row",
-
+  container:
+    "pt-16 mt-16 lg:mt-12 relative flex flex-wrap justify-between md:flex-row",
   absolute:
     "absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]",
 };
